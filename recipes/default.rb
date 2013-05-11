@@ -2,10 +2,11 @@
 # Cookbook Name:: s3fs-fuse
 # Recipe:: default
 #
+rightscale_marker :begin
 
-mounted_directories = node['s3fs-fuse'][:mounts]
+mounted_directories = eval(node['s3fs-fuse'][:mounts])
 if(mounted_directories.is_a?(Hash) || !mounted_directories.respond_to?(:each))
-  mounted_directories = [node['s3fs-fuse'][:mounts]].compact
+  mounted_directories = eval([node['s3fs-fuse'][:mounts]]).compact
 end
 
 mounted_directories.each do |mount_point|
@@ -35,4 +36,5 @@ unless(node['s3fs-fuse'][:bluepill])
   end
 end
 
+rightscale_marker :end
 

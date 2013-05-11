@@ -1,3 +1,5 @@
+rightscale_marker :begin
+
 include_recipe "bluepill"
 
 if(File.exists?('/etc/init/s3fs-fuse.conf'))
@@ -11,9 +13,11 @@ if(File.exists?('/etc/init/s3fs-fuse.conf'))
   end
 end
 
-mounted_directories = node['s3fs-fuse'][:mounts]
+# Because we cannot enter hashes in rightscale, we have to enter it as a string and then eval it
+
+mounted_directories = eval(node['s3fs-fuse'][:mounts])
 if(mounted_directories.is_a?(Hash) || !mounted_directories.respond_to?(:each))
-  mounted_directories = [node['s3fs-fuse'][:mounts]].compact
+  mounted_directories = eval([node['s3fs-fuse'][:mounts]]).compact
 end
 
 execute 's3fs[bluepill-forced-load]' do
@@ -34,3 +38,5 @@ end
 bluepill_service 's3fs' do
   action [:enable, :load, :start]
 end
+
+rightscale_marker :end

@@ -2,6 +2,7 @@
 # Cookbook Name:: s3fs-fuse
 # Recipe:: install
 #
+rightscale_marker :begin
 
 template '/etc/passwd-s3fs' do
   variables(
@@ -122,3 +123,4 @@ bash "load_fuse" do
   }
 end
 
+rightscale_marker :end

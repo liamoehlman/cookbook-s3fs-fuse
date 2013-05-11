@@ -1,6 +1,6 @@
 default['s3fs-fuse'][:s3_key] = ''
 default['s3fs-fuse'][:s3_secret] = ''
-default['s3fs-fuse'][:version] = '1.61'
+default['s3fs-fuse'][:version] = '1.68'
 default['s3fs-fuse'][:no_upload] = false
 default['s3fs-fuse'][:mounts] = []
 default['s3fs-fuse'][:bluepill] = false

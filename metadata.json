@@ -1,0 +1,119 @@
+{
+  "name": "s3fs-fuse",
+  "description": "Installs/Configures s3fs-fuse",
+  "long_description": "S3FS-FUSE\n=========\n\nProvides S3FS-FUSE with optional mount monitoring via bluepill.\n\nUsage\n=====\n\n```ruby\noverride_attributes(\n  's3fs-fuse' => {\n    :s3_key => 'key',\n    :s3_secret => 'secret',\n    :mounts => [\n      {:bucket => 'my-bucket', :path => '/mount/path', :tmp_dir => '/tmp/cache'}\n    ],\n    :bluepill => true,\n    :maxmemory => 50\n  }\n)\n\nMultiple buckets can be mounted (which is why the `:mounts` attribute is an Array\nof Hashes). Bluepill monitoring is optional and the maxmemory allows bluepill\nto kill off and remount any s3 mounts that misbehave.\n\nNote: Bluepill should be considered for any s3fs built bucket that has large number\nof entries within directories. Running an `ls` on these directories will cause the\nmount's memory to balloon. Bluepill will happily watch for this (ballooning memory)\nand remount the bucket.\n",
+  "maintainer": "Chris Roberts",
+  "maintainer_email": "chrisroberts.code@gmail.com",
+  "license": "Apache 2.0",
+  "platforms": {
+    "ubuntu": ">= 0.0.0"
+  },
+  "dependencies": {
+    "bluepill": ">= 0.0.0",
+    "rightscale": ">= 0.0.0"
+  },
+  "recommendations": {
+  },
+  "suggestions": {
+  },
+  "conflicting": {
+  },
+  "providing": {
+  },
+  "replacing": {
+  },
+  "attributes": {
+    "s3fs/s3_key": {
+      "display_name": "s3fs s3 auth key",
+      "description": "Key used to authenticate user with s3",
+      "recipes": [
+        "s3fs-fuse"
+      ],
+      "required": "required",
+      "category": "s3fs",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string"
+    },
+    "s3fs/s3_secret": {
+      "display_name": "s3fs s3 secret",
+      "description": "Secrect to the key used to authenticate user with s3",
+      "recipes": [
+        "s3fs-fuse"
+      ],
+      "required": "required",
+      "category": "s3fs",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string"
+    },
+    "s3fs/mounts": {
+      "display_name": "s3fs s3 mountpoints",
+      "description": "The string representation of a hash containing mountpoints for the buckets. e.g [{:bucket => 'my-bucket', :path => '/mount/path', :tmp_dir => '/tmp/cache'}]",
+      "recipes": [
+        "s3fs-fuse"
+      ],
+      "required": "required",
+      "category": "s3fs",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string"
+    },
+    "s3fs/bluepill": {
+      "display_name": "s3fs bluepill monitoring",
+      "description": "Monitoring to restart s3fs when its memory goes crazy",
+      "recipes": [
+        "s3fs-fuse"
+      ],
+      "required": "optional",
+      "category": "s3fs",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string"
+    },
+    "s3fs/maxmemory": {
+      "display_name": "s3fs maxmemory",
+      "description": "Restart s3fs when memory hits this threshold",
+      "recipes": [
+        "s3fs-fuse"
+      ],
+      "required": "optional",
+      "category": "s3fs",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string"
+    },
+    "s3fs/version": {
+      "display_name": "s3fs version",
+      "description": "s3fs version",
+      "recipes": [
+        "s3fs-fuse"
+      ],
+      "required": "optional",
+      "category": "s3fs",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string"
+    }
+  },
+  "groupings": {
+  },
+  "recipes": {
+    "s3fs-fuse": "Installs s3fs",
+    "s3fs-fuse::install": "Recipe that is called to install s3fs",
+    "s3fs-fuse::bluepill": "Sets up bluepil monitoring when the attribute is set to true"
+  },
+  "version": "0.0.8"
+}
