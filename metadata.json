@@ -23,7 +23,7 @@
   "replacing": {
   },
   "attributes": {
-    "s3fs/s3_key": {
+    "s3fs-fuse/s3_key": {
       "display_name": "s3fs s3 auth key",
       "description": "Key used to authenticate user with s3",
       "recipes": [
@@ -37,7 +37,7 @@
       "calculated": false,
       "type": "string"
     },
-    "s3fs/s3_secret": {
+    "s3fs-fuse/s3_secret": {
       "display_name": "s3fs s3 secret",
       "description": "Secrect to the key used to authenticate user with s3",
       "recipes": [
@@ -51,7 +51,7 @@
       "calculated": false,
       "type": "string"
     },
-    "s3fs/mounts": {
+    "s3fs-fuse/mounts": {
       "display_name": "s3fs s3 mountpoints",
       "description": "The string representation of a hash containing mountpoints for the buckets. e.g [{:bucket => 'my-bucket', :path => '/mount/path', :tmp_dir => '/tmp/cache'}]",
       "recipes": [
@@ -65,7 +65,7 @@
       "calculated": false,
       "type": "string"
     },
-    "s3fs/bluepill": {
+    "s3fs-fuse/bluepill": {
       "display_name": "s3fs bluepill monitoring",
       "description": "Monitoring to restart s3fs when its memory goes crazy",
       "recipes": [
@@ -79,7 +79,7 @@
       "calculated": false,
       "type": "string"
     },
-    "s3fs/maxmemory": {
+    "s3fs-fuse/maxmemory": {
       "display_name": "s3fs maxmemory",
       "description": "Restart s3fs when memory hits this threshold",
       "recipes": [
@@ -93,7 +93,7 @@
       "calculated": false,
       "type": "string"
     },
-    "s3fs/version": {
+    "s3fs-fuse/version": {
       "display_name": "s3fs version",
       "description": "s3fs version",
       "recipes": [
