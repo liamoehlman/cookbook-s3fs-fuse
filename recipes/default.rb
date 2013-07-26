@@ -4,6 +4,8 @@
 #
 rightscale_marker :begin
 
+# Because we cannot enter hashes in rightscale, we have to enter it as a string and then eval it
+
 mounted_directories = eval(node['s3fs-fuse'][:mounts])
 if(mounted_directories.is_a?(Hash) || !mounted_directories.respond_to?(:each))
   mounted_directories = eval([node['s3fs-fuse'][:mounts]]).compact
